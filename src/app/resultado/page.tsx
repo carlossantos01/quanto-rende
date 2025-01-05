@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { calculateInvestment, convertToBRL } from "@/lib/utils";
 import { Link } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function ResultPage() {
+function ResultPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [result, setResult] = useState<number>(0);
@@ -63,5 +63,13 @@ export default function ResultPage() {
         </Button>
       </div>
     </div>
+  );
+}
+
+export default function ResultPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultPageContent />
+    </Suspense>
   );
 }
