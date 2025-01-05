@@ -6,6 +6,7 @@ import { calculateInvestment, convertToBRL } from "@/lib/utils";
 import { Link } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
+import { toast } from "sonner"
 
 function ResultPageContent() {
   const router = useRouter();
@@ -35,7 +36,13 @@ function ResultPageContent() {
   const handleCopyLink = () => {
     const url = new URL(window.location.href);
     navigator.clipboard.writeText(url.href);
+    toast.success("Link copiado para a área de transferência");
   };
+
+  const handleCalculateTotalInvestment = () => {
+    const res = parseFloat(initialInvestment ?? "") + parseFloat(monthlyInvestment ?? "") * parseFloat(deadLine ?? "");
+    return convertToBRL(res);
+  }
 
   return (
     <div className="flex flex-col justify-center items-center h-dvh">
@@ -47,7 +54,7 @@ function ResultPageContent() {
       </h2>
       <ResultCharts
         result={result}
-        initialInvestment={convertToBRL(parseFloat(initialInvestment ?? ""))}
+        totalInvestment={handleCalculateTotalInvestment()}
       />
       <div className="flex flex-col gap-2 w-[280px] mt-4">
         <Button className="w-full" onClick={handleCopyLink}>
