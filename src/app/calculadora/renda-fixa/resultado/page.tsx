@@ -45,13 +45,7 @@ function ResultPageContent() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center h-dvh">
-      <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight lg:text-4xl">
-        Quanto Rende?
-      </h1>
-      <h2 className="scroll-m-20 pb-2 text-xl font-semibold tracking-tight first:mt-0 mb-3">
-        Simulador de Investimento
-      </h2>
+    <div className="flex flex-col pt-12 items-center h-dvh">
       <ResultCharts
         result={result}
         totalInvestment={handleCalculateTotalInvestment()}
@@ -64,7 +58,7 @@ function ResultPageContent() {
         <Button
           className="w-full"
           variant={"secondary"}
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/calculadora/renda-fixa")}
         >
           Fazer nova simulação
         </Button>

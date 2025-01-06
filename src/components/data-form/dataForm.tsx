@@ -29,7 +29,7 @@ export default function DataForm() {
     params.set("deadLine", data.deadLine.toString());
     params.set("interestRate", data.interestRate.toString());
 
-    router.push(`/resultado?${params.toString()}`);
+    router.push(`/calculadora/renda-fixa/resultado?${params.toString()}`);
   };
 
   const handleReset = (event: React.FormEvent<HTMLFormElement>) => {
