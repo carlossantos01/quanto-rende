@@ -12,6 +12,13 @@ export function convertToBRL(value: number) {
   }).format(value)
 }
 
+export function convertToCurrency(value: number, currency: string) {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: currency,
+  }).format(value)
+}
+
 export function inputMask (e: string) {
   const value = e.replace(/\D/g, ""); 
   const numericValue = parseFloat(value) / 100; 
