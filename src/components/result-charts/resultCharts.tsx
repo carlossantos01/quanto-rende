@@ -12,7 +12,7 @@ export default function ResultCharts({ result, totalInvestment }: ResultChartsPr
     const finalValue = convertToBRL(result); 
 
     return (
-        <div className="flex flex-col gap-4 w-[280px]">
+        <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
                 <ResultItemCard title="Valor total bruto" value={finalValue} />
                 <ResultItemCard title="Valor investido" value={totalInvestment} />

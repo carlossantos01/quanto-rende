@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/popover";
 import { Check, ChevronsUpDown, Share } from "lucide-react";
 import { toast } from "sonner";
+import { BsCurrencyExchange } from "react-icons/bs";
 
 export default function ExchangeRatePage() {
   const [fromCurrencyValue, setFromCurrencyValue] = useState<string>("");
@@ -66,19 +67,7 @@ export default function ExchangeRatePage() {
   useEffect(() => {
     setFromCurrencyValue(convertToCurrency(1, fromCurrency));
     setToCurrencyValue(convertToCurrency(toCurrencyActualValue, toCurrency));
-  }, []);
-
-  // const handleSwitchCurrency = () => {
-  //   const to = toCurrency;
-  //   const toValue = toCurrencyValue;
-  //   const from = fromCurrency;
-  //   const fromValue = fromCurrencyValue;
-
-  //   setFromCurrencyValue(toValue);
-  //   setToCurrencyValue(fromValue);
-  //   setFromCurrency(to);
-  //   setToCurrency(from);
-  // };
+  }, [fromCurrency, toCurrency, toCurrencyActualValue]);
 
   const handleShareQuotation = () => {
     const actualDate = new Date();
@@ -130,15 +119,13 @@ export default function ExchangeRatePage() {
 
   return (
     <div className="flex flex-col pt-4 md:pt-16 items-center h-dvh gap-4 md:gap-6 max-w-screen-lg mx-auto">
-      <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl text-center">
-        Câmbio{" "}
+      <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl text-center flex items-center gap-1 md:gap-2">
+        Conversor de
         <span className="bg-gradient-to-r from-destructive to-destructive bg-clip-text text-transparent">
-          hoje
-        </span>{" "}
-        em{" "}
-        <span className="inline-block rounded-lg bg-foreground px-4 py-2 text-background">
-          tempo real
+            moedas 
         </span>
+        {" "}
+        <BsCurrencyExchange className="sm:text-5xl md:text-6xl lg:text-6xl inline-block" />
       </h1>
       <Card className="w-[280px] h-[400px] md:w-[520px] md:h-[250px] py-6">
         <CardContent className="flex flex-col gap-2">
@@ -214,14 +201,6 @@ export default function ExchangeRatePage() {
               </Popover>
             </div>
           </div>
-          {/* <div className="flex justify-center items-center">
-            <Button
-              className="w-12 h-12 rounded-full bg-primary-500 hover:text-white text-destructive"
-              onClick={handleSwitchCurrency}
-            >
-              <TbTransferVertical />
-            </Button>
-          </div> */}
           <div>
             <div className="flex flex-col gap-2 md:flex-row">
               <Input

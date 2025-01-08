@@ -31,7 +31,7 @@ export default function CustomHeader() {
                 <span>Início</span>
               </Link>
               <Link
-                href={"/calculadora/renda-fixa"}
+                href={"/calculadora/juros-compostos"}
                 className="flex items-center gap-1"
                 onClick={() => setShowMenu(false)}
               >
@@ -64,7 +64,7 @@ export default function CustomHeader() {
             <span>Início</span>
           </Link>
           <Link
-            href={"/calculadora/renda-fixa"}
+            href={"/calculadora/juros-compostos"}
             className="hover:border-b-2 hover:border-zinc-50 flex items-center gap-1"
           >
             <Calculator className="w-4" />

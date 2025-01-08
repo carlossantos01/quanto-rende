@@ -3,9 +3,10 @@
 import ResultCharts from "@/components/result-charts/resultCharts";
 import { Button } from "@/components/ui/button";
 import { calculateInvestment, convertToBRL } from "@/lib/utils";
-import { Link } from "lucide-react";
+import { Share } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
+import { GoGraph } from "react-icons/go";
 import { toast } from "sonner"
 
 function ResultPageContent() {
@@ -35,8 +36,16 @@ function ResultPageContent() {
 
   const handleCopyLink = () => {
     const url = new URL(window.location.href);
-    navigator.clipboard.writeText(url.href);
-    toast.success("Link copiado para a área de transferência");
+
+    if (navigator.share) {
+      navigator.share({
+        title: "Calculadora de Juros Compostos | Quanto Rendeu?",
+        url: url.toString(),
+      });
+    } else {
+      navigator.clipboard.writeText(url.toString());
+      toast.success("Link copiado para a área de transferência.");
+    }
   };
 
   const handleCalculateTotalInvestment = () => {
@@ -45,20 +54,27 @@ function ResultPageContent() {
   }
 
   return (
-    <div className="flex flex-col pt-12 items-center h-dvh">
+    <div className="flex flex-col pt-12 items-center gap-4 h-dvh">
+      <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl text-center flex items-center gap-1 md:gap-2">
+        Juros
+        <span className="bg-gradient-to-r from-destructive to-destructive bg-clip-text text-transparent">
+          compostos
+        </span>
+        <GoGraph className="sm:text-5xl md:text-6xl inline-block" />
+      </h1>
       <ResultCharts
         result={result}
         totalInvestment={handleCalculateTotalInvestment()}
       />
-      <div className="flex flex-col gap-2 w-[280px] mt-4">
+      <div className="flex flex-col gap-2 w-[280px]">
         <Button className="w-full" onClick={handleCopyLink}>
-          <Link size={24} />
-          Copiar link
+          <Share size={24} />
+          Compartilhar
         </Button>
         <Button
           className="w-full"
           variant={"secondary"}
-          onClick={() => router.push("/calculadora/renda-fixa")}
+          onClick={() => router.push("/calculadora/juros-compostos")}
         >
           Fazer nova simulação
         </Button>

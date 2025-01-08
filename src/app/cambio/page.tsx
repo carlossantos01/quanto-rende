@@ -1,11 +1,11 @@
 import ExchangeRatePage from "@/components/exchange-rate-page/exchangeRatePage";
 
 export const metadata = {
-  title: "Quanto rendeu? - Câmbio Hoje em tempo real",
-  description: "Converta dolar, euro e outras moedas e saiba a cotação em tempo real",
+  title: "Conversor de moedas | Quanto Rendeu?",
+  description: "Conversor de moeda online - Acompanhe o câmbio e converta todas as principais moedas internacionais com o Conversor de Moedas da Quanto Rendeu?.",
   openGraph: {
-    title: "Quanto rendeu? - Câmbio Hoje em tempo real",
-    description: "Converta dolar, euro e outras moedas e saiba a cotação em tempo real",
+    title: "Conversor de moedas | Quanto Rendeu?",
+    description: "Conversor de moeda online - Acompanhe o câmbio e converta todas as principais moedas internacionais com o Conversor de Moedas da Quanto Rendeu?.",
     url: "https://v1-quanto-rendeu.vercel.app/",
     images: [
       {
