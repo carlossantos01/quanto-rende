@@ -10,7 +10,7 @@ export default function Home() {
           <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-center">
             A plataforma para cálculo de{" "}
             <span className="bg-gradient-to-r from-destructive to-destructive bg-clip-text text-transparent">
-              renda fixa
+              investimentos
             </span>{" "}
               <span className="inline-block rounded-lg bg-foreground px-4 py-2 text-background">
                 mais completa
@@ -18,12 +18,12 @@ export default function Home() {
               do mercado.
           </h1>
           <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl text-center">
-            Aqui você encontra as melhores simulações para renda fixa, informações sobre câmbio e muito mais gratuitamente.
+            Aqui você encontra as melhores simulações para seus investimentos, informações sobre câmbio e muito mais gratuitamente.
           </p>
         </div>
         <div className="flex gap-2 md:gap-4 items-center justify-center md:mt-6 mt-4 w-full md:w-[320px]">
           <Link href="/calculadora/renda-fixa">
-            <Button className="md:w-[228px] w-[198px] h-10 md:h-12 font-bold flex items-center">
+            <Button className="md:w-[228px] w-[198px] h-10 md:h-12 font-bold flex items-center ">
               <Calculator className="md:w-12 w-8" />
               Fazer simulação
             </Button>

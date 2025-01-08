@@ -19,12 +19,12 @@ export function convertToCurrency(value: number, currency: string) {
   }).format(value)
 }
 
-export function inputMask (e: string) {
+export function inputMask (e: string, currency?: string) {
   const value = e.replace(/\D/g, ""); 
   const numericValue = parseFloat(value) / 100; 
   const formattedValue = new Intl.NumberFormat("pt-BR", {
       style: "currency",
-      currency: "BRL",
+      currency: currency ?? "BRL",
   }).format(numericValue); 
 
   return formattedValue;
@@ -54,4 +54,10 @@ export function calculateInvestment(initialInvestment: number, monthlyInvestment
 
 export function calculateFinalInterest(result: number, initialInvestment: number) {
   return result - initialInvestment;
+}
+
+export function calculateCurrencyConversion(value: string, currency: number) {
+  const newValue = value.replace(/\D/g, ""); 
+  const numericValue = parseFloat(newValue) / 100;
+  return numericValue * currency;
 }
