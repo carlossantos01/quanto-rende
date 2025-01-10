@@ -4,7 +4,6 @@ import Link from "next/link";
 import { IoMenu } from "react-icons/io5";
 import { useState } from "react";
 import { Calculator, Home } from "lucide-react";
-import { BsCurrencyExchange } from "react-icons/bs";
 
 export default function CustomHeader() {
     const [showMenu, setShowMenu] = useState(false);
@@ -31,27 +30,13 @@ export default function CustomHeader() {
                 <span>Início</span>
               </Link>
               <Link
-                href={"/calculadora/juros-compostos"}
+                href={"/calculadora"}
                 className="flex items-center gap-1"
                 onClick={() => setShowMenu(false)}
               >
                 <Calculator className="w-4" />
                 <span>Calculadora</span>
               </Link>
-              <Link
-                href={"/cambio"}
-                className="flex items-center gap-1"
-                onClick={() => setShowMenu(false)}
-              >
-                <BsCurrencyExchange className="w-4" />
-                <span>Câmbio</span>
-              </Link>
-              {/* <Link href={"/planos"} onClick={() => setShowMenu(false)}>
-                        <span className="py-2">Planos</span>
-                    </Link>
-                    <Link href={"/login"} onClick={() => setShowMenu(false)}>
-                        <Button variant={"secondary"}>Login</Button>
-                    </Link> */}
             </div>
           )}
         </div>
@@ -64,25 +49,12 @@ export default function CustomHeader() {
             <span>Início</span>
           </Link>
           <Link
-            href={"/calculadora/juros-compostos"}
+            href={"/calculadora"}
             className="hover:border-b-2 hover:border-zinc-50 flex items-center gap-1"
           >
             <Calculator className="w-4" />
             <span>Calculadora</span>
           </Link>
-          <Link
-            href={"/cambio"}
-            className="hover:border-b-2 hover:border-zinc-50 flex items-center gap-1"
-          >
-            <BsCurrencyExchange className="w-4" />
-            <span>Câmbio</span>
-          </Link>
-          {/* <Link href={"/planos"}>
-            <span>Planos</span>
-          </Link>
-          <Link href={"/login"}>
-            <Button variant={"secondary"}>Login</Button>
-          </Link> */}
         </div>
       </div>
     </div>

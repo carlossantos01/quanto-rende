@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center h-dvh max-w-screen-lg mx-auto gap-4">
+    <div className="flex flex-col items-center max-w-screen-lg mx-auto gap-4">
       <div className="flex flex-col items-center gap-4 md:mt-28 mt-10 px-4 md:px-2">
       <div className="space-y-4">
           <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-center">
@@ -22,7 +22,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex gap-2 md:gap-4 items-center justify-center md:mt-6 mt-4 w-full md:w-[320px]">
-          <Link href="/calculadora/renda-fixa">
+          <Link href="/calculadora">
             <Button className="md:w-[228px] w-[198px] h-10 md:h-12 font-bold flex items-center ">
               <Calculator className="md:w-12 w-8" />
               Fazer simulação

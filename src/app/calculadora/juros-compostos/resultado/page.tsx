@@ -54,7 +54,7 @@ function ResultPageContent() {
   }
 
   return (
-    <div className="flex flex-col pt-12 items-center gap-4 h-dvh">
+    <div className="flex flex-col pt-12 items-center gap-4">
       <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl text-center flex items-center gap-1 md:gap-2">
         Juros
         <span className="bg-gradient-to-r from-destructive to-destructive bg-clip-text text-transparent">

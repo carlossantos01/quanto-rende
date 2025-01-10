@@ -42,14 +42,13 @@ export function convertInterestRate(e: string) {
 }
 
 export function calculateInvestment(initialInvestment: number, monthlyInvestment: number, deadLine: number, interestRate: number) {
-  let finalValue = initialInvestment;
+  const newInterestRate = interestRate / 100;
+  const newInitialInvestment = initialInvestment * Math.pow(1 + newInterestRate, deadLine);
 
-  for (let i = 0; i < deadLine; i++) {
-    finalValue += monthlyInvestment;
-    finalValue += finalValue * (interestRate / 100);
-  }
+  const contributionFactor = (Math.pow(1 + newInterestRate, deadLine) - 1) / newInterestRate;
+  const contributions = monthlyInvestment * contributionFactor;
 
-  return finalValue;
+  return newInitialInvestment + contributions;
 }
 
 export function calculateFinalInterest(result: number, initialInvestment: number) {

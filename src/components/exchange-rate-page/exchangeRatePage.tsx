@@ -25,8 +25,14 @@ import {
 import { Check, ChevronsUpDown, Share } from "lucide-react";
 import { toast } from "sonner";
 import { BsCurrencyExchange } from "react-icons/bs";
+import { useSearchParams } from "next/navigation";
 
 export default function ExchangeRatePage() {
+  const searchParams = useSearchParams();
+  const fromValue = searchParams.get("fromValue");
+  const from = searchParams.get("from");
+  const to = searchParams.get("to");
+
   const [fromCurrencyValue, setFromCurrencyValue] = useState<string>("");
   const [toCurrencyValue, setToCurrencyValue] = useState<string>("");
   const [fromCurrency, setFromCurrency] = useState<string>("USD");
@@ -65,35 +71,31 @@ export default function ExchangeRatePage() {
   }, [fromCurrency, toCurrency, toCurrencyActualValue]);
 
   useEffect(() => {
-    setFromCurrencyValue(convertToCurrency(1, fromCurrency));
-    setToCurrencyValue(convertToCurrency(toCurrencyActualValue, toCurrency));
-  }, [fromCurrency, toCurrency, toCurrencyActualValue]);
+    if (from && to && fromValue) {
+      setFromCurrency(from);
+      setToCurrency(to);
+      setFromCurrencyValue(convertToCurrency(parseFloat(fromValue), from));
+    } else {
+      setFromCurrencyValue(convertToCurrency(1, fromCurrency));
+      setToCurrencyValue(convertToCurrency(toCurrencyActualValue, toCurrency));
+    }
+  }, [fromCurrency, toCurrency, toCurrencyActualValue, from, fromValue, to]);
 
   const handleShareQuotation = () => {
-    const actualDate = new Date();
-
-    const text = `
-      Data: ${actualDate.toLocaleDateString(
-        "pt-br"
-      )} ${actualDate.toLocaleTimeString()}
-
-      Quantia: ${fromCurrencyValue} ${fromCurrency} 
-      Convertido para: ${toCurrencyValue} ${toCurrency}
-
-      Para mais informações, acesse: https://v1-quantorendeu.vercel.app/cambio
-    `;
+    const newValue = fromCurrencyValue.replace(/\D/g, "");
+    const numericValue = parseFloat(newValue) / 100;
+    const url = `https://v1-quantorendeu.vercel.app/cambio?from=${fromCurrency}&to=${toCurrency}&fromValue=${numericValue}`;
 
     if (navigator.share) {
       navigator.share({
-        title: "Cotação de câmbio - Quanto Rendeu?",
-        text: text,
-        url: "https://v1-quantorendeu.vercel.app/cambio",
+        title: "Conversor de moeda - Quanto Rendeu?",
+        url,
       });
     } else {
-      navigator.clipboard.writeText(text);
-      toast.success("Cotação copiada para a área de transferência.");
+      navigator.clipboard.writeText(url);
+      toast.success("Link copiado para a área de transferência.");
     }
-  }
+  };
 
   const handleCalculateFromCurrency = () => {
     if (toCurrencyActualValue) {
@@ -122,9 +124,8 @@ export default function ExchangeRatePage() {
       <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl text-center flex items-center gap-1 md:gap-2">
         Conversor de
         <span className="bg-gradient-to-r from-destructive to-destructive bg-clip-text text-transparent">
-            moedas 
-        </span>
-        {" "}
+          moedas
+        </span>{" "}
         <BsCurrencyExchange className="sm:text-5xl md:text-6xl lg:text-6xl inline-block" />
       </h1>
       <Card className="w-[280px] h-[400px] md:w-[520px] md:h-[250px] py-6">

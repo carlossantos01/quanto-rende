@@ -21,14 +21,14 @@ export default function DataForm() {
 
     const data = {
       initialInvestment: parseFloat(initialInvestment.replace(/\D/g, "")) / 100,
-      monthlyInvestment: parseFloat(monthlyInvestment.replace(/\D/g, "")) / 100,
+      monthlyInvestment: monthlyInvestment ? parseFloat(monthlyInvestment.replace(/\D/g, "")) / 100 : 0,
       deadLine: parseInt(deadLine),
       interestRate: parseFloat(interestRate.replace(/\D/g, "")) / 100,
     };
 
     const params = new URLSearchParams();
     params.set("initialInvestment", data.initialInvestment.toString());
-    params.set("monthlyInvestment", data.monthlyInvestment.toString());
+    params.set("monthlyInvestment", data.monthlyInvestment ? data.monthlyInvestment.toString() : "0");
     params.set("deadLine", data.deadLine.toString());
     params.set("interestRate", data.interestRate.toString());
 
@@ -44,7 +44,7 @@ export default function DataForm() {
   };
 
   return (
-    <div className="flex flex-col pt-4 md:pt-16 items-center h-dvh gap-4 md:gap-6 max-w-screen-lg mx-auto">
+    <div className="flex flex-col pt-4 md:pt-16 items-center gap-4 md:gap-6 max-w-screen-lg mx-auto">
       <h1 className="animate-fade-up text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl text-center flex items-center gap-1 md:gap-2">
         Juros
         <span className="bg-gradient-to-r from-destructive to-destructive bg-clip-text text-transparent">
@@ -63,7 +63,7 @@ export default function DataForm() {
                 <Input
                   className="w-full h-16 font-bold md:text-2xl text-zinc-800"
                   name="initialInvestment"
-                  placeholder="Investimento Inicial"
+                  placeholder="Investimento Inicial*"
                   value={initialInvestment}
                   onChange={(e) =>
                     setInitialInvestment(handleConvertCurrency(e))
@@ -89,7 +89,7 @@ export default function DataForm() {
                 <Input
                   className="w-full h-16 font-bold md:text-2xl text-zinc-800 disabled:text-zinc-800"
                   name="deadLine"
-                  placeholder="Prazo (Meses)"
+                  placeholder="Prazo (Meses)*"
                   type="number"
                   value={deadLine}
                   onChange={(e) => setDeadLine(e.target.value)}
@@ -101,7 +101,7 @@ export default function DataForm() {
                 <Input
                   className="w-full h-16 font-bold md:text-2xl text-zinc-800 disabled:text-zinc-800"
                   name="interestRate"
-                  placeholder="Rentabilidade (% a.m.)"
+                  placeholder="Rentabilidade (% a.m.)*"
                   value={interestRate}
                   onChange={(e) =>
                     setInterestRate(convertInterestRate(e.target.value))
@@ -112,6 +112,7 @@ export default function DataForm() {
             <Button
               type="submit"
               className="w-full mt-4 h-12 md:h-14 font-bold flex items-center mx-auto"
+              disabled={!initialInvestment || !deadLine || !interestRate}
             >
               <Calculator className="w-6 h-6" />
               Calcular
