@@ -1,11 +1,14 @@
 import ExchangeRatePage from "@/components/exchange-rate-page/exchangeRatePage";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Conversor de moedas | Quanto Rendeu?",
-  description: "Conversor de moeda online - Acompanhe o câmbio e converta todas as principais moedas internacionais com o Conversor de Moedas da Quanto Rendeu?.",
+  description:
+    "Conversor de moeda online - Acompanhe o câmbio e converta todas as principais moedas internacionais com o Conversor de Moedas da Quanto Rendeu?.",
   openGraph: {
     title: "Conversor de moedas | Quanto Rendeu?",
-    description: "Conversor de moeda online - Acompanhe o câmbio e converta todas as principais moedas internacionais com o Conversor de Moedas da Quanto Rendeu?.",
+    description:
+      "Conversor de moeda online - Acompanhe o câmbio e converta todas as principais moedas internacionais com o Conversor de Moedas da Quanto Rendeu?.",
     url: "https://v1-quanto-rendeu.vercel.app/",
     images: [
       {
@@ -19,6 +22,8 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <ExchangeRatePage />
-  )
+    <Suspense fallback={<div>Loading...</div>}>
+      <ExchangeRatePage />
+    </Suspense>
+  );
 }
