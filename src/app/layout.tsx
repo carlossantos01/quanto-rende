@@ -3,6 +3,7 @@ import "./globals.css";
 import { Mulish } from 'next/font/google';
 import { Toaster } from "@/components/ui/sonner"
 import CustomHeader from "@/components/custom-header/customHeader";
+import { Analytics } from "@vercel/analytics/react";
 
 const mulish = Mulish({ subsets: ['latin'] })
 
@@ -36,6 +37,7 @@ export default function RootLayout({
         <CustomHeader />
         {children}
         <Toaster position="top-center" richColors/>
+        <Analytics />
       </body>
     </html>
   );
